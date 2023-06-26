@@ -2,17 +2,18 @@
 //we will be connecting our routes to a series of data
 const notes = require("../db/db.json");
 const fs = require("fs");
+const app = require("express").Router();
 
 //here we will be making our api functions such as get/post/delete
-module.exports = function(app){
+module.exports = function(){
 
     //here we will be displaying all of the notes
-    app.get("/api/notes", function(req,res){
+    app.get("/notes", function(req,res){
         return res.json(notes);
     });
 
     //here we will be returning a single note 
-    app.get("/api/notes/:", function(req, res){
+    app.get("/api/notes/:id", function(req, res){
         let chosen = req.params.note;
 
         //creating a for loop to cycle through the notes
@@ -68,9 +69,13 @@ module.exports = function(app){
         //turn the notes object array into a string
         let noteString = JSON.stringify(notes);
         //write the array of note/objects to te db.json file
+        function saveNotesToDb() {
         fs.writeFile("./db/db.json", noteString, function(err){
             if(err) throw err;
             console.log("Note Deleted!");
         });
+        }
+        return app;
     });
 };
+module.exports = app;
