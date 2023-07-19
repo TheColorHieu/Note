@@ -60,3 +60,5 @@ The following API routes should be created:
 
 ## How to run 
 In order to start the note taking app all we have to do is intall the modules that we need and then in the terminal we put down the code node server.js
+
+## Link https://notetaker-12-1ca5a6dbb78d.herokuapp.com/notes 
