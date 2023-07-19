@@ -1,8 +1,10 @@
-const notes = require("../db/db.json");
 const fs = require("fs");
-const router = require("express").Router();
+const express = require("express");
 
-// here we will be making our api functions such as get/post/delete
+const router = express.Router();
+router.use(express.json());
+
+const notes = require("../db/db.json");
 
 // here we will be displaying all of the notes
 router.get("/notes", function(req, res) {
@@ -78,3 +80,4 @@ router.delete("/notes/:id", function(req, res) {
 });
 
 module.exports = router;
+
